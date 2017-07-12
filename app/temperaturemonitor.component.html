@@ -1,0 +1,56 @@
+<h1>Temperature Monitor</h1>
+<section class="form-section">
+  <form>
+    <div class="row">
+      <div class="col col-9">
+        <label for="temperature" class="field">Add Temperature:</label>
+        <input [(ngModel)]="temperature" type="number" name="temperature" id="temperature" class="field" min="-150" max="150">
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-3">
+        <button type="reset" (click)="clear()" class="btn btn-default field">Clear</button>
+      </div>
+      <div class="col col-3">
+        <button type="submit" (click)="recordTemperature()" class="btn btn-primary field">Add</button>
+      </div>
+    </div>
+    <div *ngIf="showTemperatureAlert" class="row">
+      <div class="col col-12">
+        <div  class="alert alert-danger col-12" role="alert">{{temperatureAlertMessage}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12">
+        <pre> The temperature values entered: {{temperatureArr}}</pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-12">        
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" [style.width]="progressBarPercent">
+              {{progressBarPercent}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="result-section">
+  <div class="row">
+    <div class="col col-5">
+      <button (click)="getCurrentMedian()" class="btn btn-success field">Get Median Temperature</button>
+    </div>
+    <div class="col col-7">
+      <pre class="field">Current Median: {{ median }}</pre>
+    </div>
+  </div>
+  <div *ngIf="showMedianAlert" class="row">
+    <div class="col col-12">
+      <div class="alert alert-danger" role="alert">{{medianAlertMessage}}</div>
+    </div>
+  </div>
+</section>
